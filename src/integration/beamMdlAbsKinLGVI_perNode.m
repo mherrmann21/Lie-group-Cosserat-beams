@@ -3,7 +3,7 @@ function [simData, metaDataSteps] = beamMdlAbsKinLGVI_perNode( ...
     %% LGVI for the GE beam in absolute, global description
     %
     % Inputs: See arguments block below.
-    % Outputs: simRes object.
+    % Outputs: Simulation data and per-step solver metadata.
     %
     % Maximilian Herrmann
     % Chair of Automatic Control
@@ -117,7 +117,7 @@ function [simData, metaDataSteps] = beamMdlAbsKinLGVI_perNode( ...
         ImplicitIterations(:,k) = solData_k.ImplicitIterations;
         ExitFlag(:,k)           = solData_k.ExitFlag;
 
-        % Check if solver was sucessful; cancel simulation if not
+        % Check if solver was successful; cancel simulation if not
         if ~all(isnan(solData_k.ExitFlag)) && any(solData_k.ExitFlag)
             nStepsDone = k;
             break;

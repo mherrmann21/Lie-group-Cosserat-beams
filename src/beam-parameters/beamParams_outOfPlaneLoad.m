@@ -20,7 +20,7 @@ function pars = beamParams_outOfPlaneLoad()
     %%% Beam Geometry
     % with rectangular cross-section
 
-    % Cross-Section geometry
+    % Cross-section geometry
     pars.geom.H = 1;
     pars.geom.W = 1;
     pars.geom.A = pars.geom.H * pars.geom.W;
@@ -37,7 +37,8 @@ function pars = beamParams_outOfPlaneLoad()
     pars.mat.E = 1e7;
     pars.mat.nu = 0;
 
-    % From <LLA12 rubber rod (not given and not relevant for static simulation)
+    % From the LLA12 rubber-rod example (not given and not relevant for the
+    % static simulation)
     pars.mat.rho = 1e0;
 
     %%% Dissipation coefficients

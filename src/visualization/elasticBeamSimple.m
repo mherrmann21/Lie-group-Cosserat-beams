@@ -38,7 +38,7 @@ classdef elasticBeamSimple < handle % Make it a handle function!
         % Beam color
         col
 
-        % Name of the beam (in the plot legend
+        % Name of the beam (in the plot legend)
         name
 
         % Interpolated segment length
@@ -56,8 +56,7 @@ classdef elasticBeamSimple < handle % Make it a handle function!
 
     methods
         function obj = elasticBeamSimple(g, options)
-            %elasticBeam Construct an instance of this class
-            %   ...
+            % Construct an elastic-beam visualization.
 
             arguments
                 % Array of SE3 node configuration matrices with dimension

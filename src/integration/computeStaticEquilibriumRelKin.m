@@ -1,5 +1,5 @@
 function [gEqu, simData, solInfo] = computeStaticEquilibriumRelKin(simPars, beamPars, Ba, Bc, nLoadSteps, useExp)
-    %% Compute static equilbrium of a beam
+    %% Compute static equilibrium of a beam
     % Based on the relKin (Reduced) formulation
     %
     % Maximilian Herrmann
@@ -213,8 +213,7 @@ function equiEqu = implicitEquilibriumFunction(psi_k, simPars, discPars, Ba, Bc,
     % Residual
     equiEqu = f_seg_k(:);
 
-    % Only evaluate for nodes > 1, since Jacobian of the first node is
-    % always zero
+    % The first-node term is included for consistency; its Jacobian is zero.
     for iN = 1:nNodes
         equiEqu = equiEqu + JBeam(:, :, iN).' * f_node_k_b(:, iN);
     end

@@ -79,7 +79,7 @@ function [simData, metaDataSteps] = beamMdlRelKinVarInt_Broyden( ...
     % Initialize variable for the inverse Jacobian matrix of the implicit
     % equations
     % (The value assigned here is not actually used; the inverse Jacobian
-    % is computed inside the onestep function for the first time step)
+    % is computed inside the one-step function for the first time step)
     H_k = zeros(nSeg*nAllwd);
 
 
@@ -143,7 +143,7 @@ function [simData, metaDataSteps] = beamMdlRelKinVarInt_Broyden( ...
         ImplicitIterations(k) = solData_k.ImplicitIterations;
         ExitFlag(k)           = solData_k.ExitFlag;
 
-        % Check if solver was sucessful; cancel simulation if residual is
+        % Check if solver was successful; cancel simulation if residual is
         % above residual limit
         if ( solData_k.ExitFlag && solData_k.ImplicitError > solverConfig.errorMarginLimit ) ...
                 || isnan(solData_k.ImplicitError)

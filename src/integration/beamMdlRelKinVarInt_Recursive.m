@@ -2,7 +2,7 @@ function [simData, metaDataSteps] = beamMdlRelKinVarInt_Recursive( ...
         simPars, beamPars, solverConfig, Ba, Bc ) %#codegen
     %% Variational Integrator for the GE beam in relative kinematic description and Reduced Deformation Modes
     %
-    % Uses the linear-time recursive variational intgegrator formulation
+    % Uses the linear-time recursive variational integrator formulation
     % from [Lee+20] for chain-kinematic multibody systems.
     %
     % Maximilian Herrmann
@@ -132,7 +132,7 @@ function [simData, metaDataSteps] = beamMdlRelKinVarInt_Recursive( ...
         ImplicitIterations(k) = solData_k.ImplicitIterations;
         ExitFlag(k)           = solData_k.ExitFlag;
 
-        % Check if solver was sucessful; cancel simulation if residual is
+        % Check if solver was successful; cancel simulation if residual is
         % above residual limit
         if ( ~isnan(solData_k.ExitFlag) && solData_k.ExitFlag && ...
                 solData_k.ImplicitError > solverConfig.errorMarginLimit ) ...
@@ -207,7 +207,7 @@ function [ ...
         f_node_k_s   (6,:) double   % Wrench in the inertial/spatial frame
 
         % Force a solver iteration by adding a small perturbation to the
-        % intial value of the implicit solver
+        % Initial value of the implicit solver
         forceSolverIteration (1,1) logical
 
         % beamSimPars object containing the simulation parameters
@@ -249,7 +249,7 @@ function [ ...
         SNode_k(:,:,ii) = l * cayRTDSE3( -xi_k(:, ii) * l ) * Ba;
     end
 
-    % Precompute the right-trivilialized derivative for xi_k (if required),
+    % Precompute the right-trivialized derivative for xi_k (if required),
     % so that we don't have to do that in the solver loop
     % Directly multiply with Ba.' to get the reduced matrix
     dTaoInvXi = zeros(nAllwd,6,nSeg);

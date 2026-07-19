@@ -47,3 +47,9 @@ codegen/
 
 # Cloud based storage dotfile
 .MATLABDriveTag
+
+# Operating-system and editor metadata
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

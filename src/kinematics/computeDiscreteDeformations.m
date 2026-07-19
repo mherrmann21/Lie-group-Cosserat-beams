@@ -9,7 +9,6 @@ function xi = computeDiscreteDeformations(g)
     % Inputs:
     %   g:  Array of SE3 node configuration matrices with dimension 
     %       (4, 4, nNodes)
-    %   x:  2D array of node position vectors with dimension (3, nNodes)
     %
     % Outputs:
     %   xi: 2D array of discrete deformations with dimension (6, nSeg)

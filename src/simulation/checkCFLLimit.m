@@ -10,7 +10,6 @@ function hCFL = checkCFLLimit(beamPars, nSeg, options)
 
     %% CFL Limit
 
-    nu = beamPars.mat.nu;
     E = beamPars.mat.E;
     G = beamPars.mat.G;
 
@@ -30,7 +29,7 @@ function hCFL = checkCFLLimit(beamPars, nSeg, options)
     if ~isnan(options.h)
         fprintf('   Used time step:        %e = 2^%.2f s\n', options.h, log2(options.h));
         if options.h > hCFL
-            warning('Chosen time step (%e = 2^%.2f s) is above maximum timestep according to CFL limit (%e = 2^%.2f s)!\n', options.h, log2(options.h), hCFL, log2(hCFL) );
+            warning('Chosen time step (%e = 2^%.2f s) is above the maximum time step according to the CFL limit (%e = 2^%.2f s)!\n', options.h, log2(options.h), hCFL, log2(hCFL) );
         end
     end
 

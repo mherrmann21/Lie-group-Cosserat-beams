@@ -186,7 +186,7 @@ for iSeg = 1:length(nSegVec)
         solverConfig.errorMarginLimit   = 1e-6;
         solverConfig.maxIterations = 200;
         solverConfig.JacobianIterationThreshold = 5;
-        solverConfig.UseExactJabocobian = true;
+        solverConfig.UseExactJacobian = true;
 
         % Get beam models to compare / validate
         beamModels = defineSimStudyBeamModels('solverConfig', solverConfig);
@@ -208,7 +208,7 @@ for iSeg = 1:length(nSegVec)
             beamSim.simPars  = simPars;
             beamSim.beamPars = beamPars;
             beamSim.simModel = beamModels(iSim);
-            beamSim.simModel.solverConfig.UseExactJabocobian = true;
+            beamSim.simModel.solverConfig.UseExactJacobian = true;
 
             %beamSim.simModel.funHandle = @(beamPars, simPars, simModel) beamMdlAbsKinLGVI_general(simPars, beamPars, simModel.solverConfig, simModel.reducedParams.Ba, simModel.reducedParams.Bc);
 

@@ -11,7 +11,7 @@ classdef beamMaterialParams
     properties
         rho     (1,1) double    % Density (kg/m^3)
         E       (1,1) double    % Young's modulus (N/m^2)
-        nu      (1,1) double    % Poisson's number
+        nu      (1,1) double    % Poisson's ratio
         G       (1,1) double    % Shear Modulus
     end
 end

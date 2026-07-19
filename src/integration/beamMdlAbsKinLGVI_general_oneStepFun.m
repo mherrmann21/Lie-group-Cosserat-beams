@@ -49,7 +49,7 @@ function [R_k1, x_k1, eta_k, xi_k1, solData, H_k] = ...
         updateInvJacobian (1,1) logical
 
         % Force a solver iteration by adding a small perturbation to the
-        % intial value of the implicit solver
+        % Initial value of the implicit solver
         forceSolverIteration (1,1) logical
 
         % Parameter object
@@ -150,7 +150,7 @@ function [R_k1, x_k1, eta_k, xi_k1, solData, H_k] = ...
 
     % Initial value for the solution
     % Use value from last time step
-    % TODO: Use explict euler step on velocity level as done in
+    % TODO: Use an explicit Euler step at the velocity level as done in
     % [Lee+20, Sec.3.3], IG2?
     eta_k = eta_k0;
 
@@ -170,7 +170,7 @@ function [R_k1, x_k1, eta_k, xi_k1, solData, H_k] = ...
 
         % Update Implicit Jacobian Matrix if Necessary
         if updateInvJacobian
-            H_k = invDELJac(eta_k, VUDUV, params, h, nStart, solverConfig.UseExactJabocobian);
+            H_k = invDELJac(eta_k, VUDUV, params, h, nStart, solverConfig.UseExactJacobian);
         end
 
         for iIteration = 1:solverConfig.maxIterations
@@ -275,7 +275,7 @@ function residual = beamMdlAbsKinDEL(eta_k, F_k0, Q_k, g_k, VUDUV, h, params, nS
     end
 end
 
-function H_k = invDELJac(eta_k, VUDUV, params, h, nStart, useExactJabocobian)
+function H_k = invDELJac(eta_k, VUDUV, params, h, nStart, useExactJacobian)
     % Compute the inverse of the DEL Jacobian
     nNodes = size(eta_k, 2);
     nSeg = nNodes - 1;
@@ -285,7 +285,7 @@ function H_k = invDELJac(eta_k, VUDUV, params, h, nStart, useExactJabocobian)
 
     % Check if damping is present to decide whether we have to use the
     % full, complicated Jacobian or only have to compute the inertia terms
-    if any(params.d)  && useExactJabocobian
+    if any(params.d)  && useExactJacobian
         J_k = zeros(6,6,nNodes,nNodes);
         for iSeg = 1:nSeg
             J_k(:,:,iSeg,iSeg)   = ...

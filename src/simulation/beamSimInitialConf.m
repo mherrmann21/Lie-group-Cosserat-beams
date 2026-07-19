@@ -16,7 +16,7 @@ function [g0, xi0] = beamSimInitialConf(nSeg, params)
     xiTrl = [0; 0; 1];
     xiConst = [ xiRot; xiTrl ];
 
-    % Array of segment deformations+
+    % Array of segment deformations
     xi0 = repmat(xiConst, [1, nSeg]);%.* repmat(linspace(1,0,nSeg), [6,1]).^2;
     xi0(end,:) = 1;
 

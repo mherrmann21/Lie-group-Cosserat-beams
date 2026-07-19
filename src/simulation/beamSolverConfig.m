@@ -20,6 +20,6 @@ classdef beamSolverConfig
         % additional dissipation term; slow to compute) or only the
         % Jacobian from the non-dissipative case (faster to compute)
         % (Exact Jacobian necessary if strong dissipation is present)
-        UseExactJabocobian          (1,1) logical = false;
+        UseExactJacobian            (1,1) logical = false;
     end
 end

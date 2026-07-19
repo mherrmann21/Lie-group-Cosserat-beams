@@ -2,7 +2,7 @@ function [errorRel, errorMat] = simResComputeReferenceErrors(hEval, nSegEval, L,
     %% Compute Error Metric of a Beam Simulation Compared to a Reference Simulation
     %
     % Method after [Dem+15, pp.113]; difference is that here we used the
-    % configuration difference between to space-time nodes expressed with
+    % configuration difference between two space-time nodes expressed with
     % the relative se3 element between them as the error measure.
     %
     %  * The comparison is done at the space-time-grid defined by
@@ -137,4 +137,3 @@ function [errorRel, errorMat] = simResComputeReferenceErrors(hEval, nSegEval, L,
 
     fprintf('   Relative Error: %e\n', errorRel);
 end
-

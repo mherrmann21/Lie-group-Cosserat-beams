@@ -1,9 +1,8 @@
 function animateBeamSimRes(simData, params, SAVE_MOVIE, fileName, opts)
-    %% Animate the simulation results of a beam simulation
-    % Todo:
-    % * Proper description and input definition
-    % * Proper definition of the simRes struct and its fields
-    % * Option to specify video file name
+    %% Animate beam simulation results
+    % The configurations are resampled at the requested frame rate and
+    % interpolated along the beam before rendering. The animation can
+    % optionally be written to an MPEG-4 file.
 
     arguments
         simData     (1,1) beamSimData
@@ -18,7 +17,7 @@ function animateBeamSimRes(simData, params, SAVE_MOVIE, fileName, opts)
         opts.frameRate (1,1) double = 30;
     end
 
-    % Disable warning about video autput size
+    % Disable warning about video output size
     warning('off', 'MATLAB:audiovideo:VideoWriter:mp4FramePadded');
 
     tout = simData.tout;
@@ -33,7 +32,7 @@ function animateBeamSimRes(simData, params, SAVE_MOVIE, fileName, opts)
 
     %% Interpolate results at fixed sampling rate and spatial resolution
 
-    tSample = 1/opts.frameRate; % For 30FPS video
+    tSample = 1/opts.frameRate;
     tQuery = (tout(1):tSample:tout(end))';
     gInput = SE3Matrix(simData.R,simData.x);
 
@@ -51,7 +50,7 @@ function animateBeamSimRes(simData, params, SAVE_MOVIE, fileName, opts)
 
     % Spatial interpolation on SE3
 
-    % Spatial query points (normalize beam length to 1)
+    % Spatial query points in physical beam coordinates
     sInput = 0:(params.L/nSeg):params.L;
     lInterp = 0.01;
     sQuery = 0:lInterp:params.L;

@@ -7,10 +7,6 @@ function pars = beamParams_LLA11_steelString(options)
     % Chair of Automatic Control
     % TUM School of Engineering and Design
     % Technical University of Munich
-    %
-    % ToDo:
-    % * Include additional optional arguments for some parameters, such as
-    %   length/width
 
     arguments
         % Individual Value for the beam length (m)
@@ -41,7 +37,7 @@ function pars = beamParams_LLA11_steelString(options)
 
     radius = options.radius;
 
-    % Cross-Section geometry
+    % Cross-section geometry
     % H/W corresponds to the diameter of the circular cross-section
     pars.geom.H = 2*radius;
     pars.geom.W = 2*radius;
@@ -68,7 +64,7 @@ function pars = beamParams_LLA11_steelString(options)
     % Default value set above in arguments block
     pars.mat.E = options.E;
 
-    % Poisson's number
+    % Poisson's ratio
     % https://en.wikipedia.org/wiki/Poisson%27s_ratio#Poisson's_ratio_values_for_different_materials
     pars.mat.nu = 0.2;
 
@@ -80,5 +76,5 @@ function pars = beamParams_LLA11_steelString(options)
 
     %% Display some key properties
 
-    fprintf('Beam slenderness ratio L/R: %d\n', pars.L/pars.geom.H);
+    fprintf('Beam length-to-height ratio L/H: %d\n', pars.L/pars.geom.H);
 end

@@ -4,8 +4,8 @@
 %  2. Absolute-kinematic Simo-Reissner beam model with LGVI
 %  3. Absolute-kinematic Simo-Reissner beam model with ODE solver (ode15s)
 %
-% Note that the simulated beam is fairly soft, so the numerical models has
-% a comparably low stiffness and can be simulated efficiently even with the
+% The simulated beam is fairly soft, so the numerical models have
+% comparatively low stiffness and can be simulated efficiently even with the
 % Simo-Reissner models.
 %
 % Maximilian Herrmann
@@ -95,15 +95,13 @@ beamSim = beamSim.simulateModel("consoleOutput", true, "accurateTiming", false);
 
 % Define beam model to simulate
 beamSim.simModel.modelName        = "AbsKin SR General";
-beamSim.simModel.reducedParams.Ba; % Not needed
-beamSim.simModel.reducedParams.Bc;
 beamSim.simModel.funHandle        = @(beamPars, simPars, simModel) ...
     beamMdlAbsKinLGVI_general_mex(simPars, beamPars, simModel.solverConfig, zeros(6,0), zeros(6,0));
 
 % Solver settings
 beamSim.simModel.solverConfig.errorMargin = 1e-8;
 beamSim.simModel.solverConfig.maxIterations = 25;
-beamSim.simModel.solverConfig.UseExactJabocobian = true;
+beamSim.simModel.solverConfig.UseExactJacobian = true;
 beamSim.simModel.solverConfig.JacobianIterationThreshold = 4;
 
 % Set time step (must be small for SR model)
@@ -143,9 +141,9 @@ beamSim.plotSimResults;
 
 if ANIMATE_RESULTS
     disp('Animating Results...')
-    moveFileName = sprintf("%s_simulation_rubber_rod", string(datetime, 'yyMMdd_HHmm'));
-    moveSaveFile = fullfile(getRootFolder, "results", "simulations", moveFileName);
-    animateBeamSimRes(beamSim.simRes.simData, beamPars, SAVE_MOVIE, moveSaveFile);
+    movieFileName = sprintf("%s_simulation_rubber_rod", string(datetime, 'yyMMdd_HHmm'));
+    movieSavePath = fullfile(getRootFolder, "results", "simulations", movieFileName);
+    animateBeamSimRes(beamSim.simRes.simData, beamPars, SAVE_MOVIE, movieSavePath);
 end
 
 disp('Finished.')

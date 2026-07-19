@@ -521,7 +521,7 @@ for iMat = 1:length(beamPars)
                     disp('Saving Individual Data...');
 
                     % Remove the detailed simulation results data;
-                    % only keeps "lightweight" overall simulation meta data
+                    % only keeps lightweight aggregate simulation metadata
                     if ~SAVE_DATA
                         beamSim.clearSimData();
                     end

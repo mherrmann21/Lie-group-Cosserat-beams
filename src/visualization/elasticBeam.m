@@ -6,7 +6,7 @@ classdef elasticBeam < handle
     % TUM School of Engineering and Design
     % Technical University of Munich
     %
-    % Visualization of a spatially discretized.
+    % Visualization of a spatially discretized beam.
     % Note: Direction of the beam length is in (local) Z-direction, i.e.,
     % the cross-sections lie in the XY planes of the local frames
     % (corresponding to [Dem12] / [Dem+15]).

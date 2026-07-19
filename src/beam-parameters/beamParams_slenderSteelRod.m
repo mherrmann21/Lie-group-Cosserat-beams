@@ -8,9 +8,8 @@ function pars = beamParams_slenderSteelRod(options)
     % TUM School of Engineering and Design
     % Technical University of Munich
     %
-    % ToDo:
-    % * Include additional optional arguments for some parameters, such as
-    %   length/width
+    % The beam length and Young's modulus can be overridden with name-value
+    % arguments.
 
     arguments
         % Individual Value for the beam length (m)
@@ -36,7 +35,7 @@ function pars = beamParams_slenderSteelRod(options)
     %%% Beam Geometry
     % with rectangular cross-section
 
-    % Cross-Section geometry
+    % Cross-section geometry
     pars.geom.H = 0.01;
     pars.geom.W = 0.01;
     pars.geom.A = pars.geom.H * pars.geom.W;
@@ -62,7 +61,7 @@ function pars = beamParams_slenderSteelRod(options)
     % Default value set above in arguments block
     pars.mat.E = options.E;
 
-    % Poisson's number
+    % Poisson's ratio
     % https://en.wikipedia.org/wiki/Poisson%27s_ratio#Poisson's_ratio_values_for_different_materials
     pars.mat.nu = 0.3;
 
@@ -74,5 +73,5 @@ function pars = beamParams_slenderSteelRod(options)
     
     %% Display some key properties
 
-    fprintf('Beam slenderness ratio L/R: %d\n', pars.L/pars.geom.H);
+    fprintf('Beam length-to-height ratio L/H: %d\n', pars.L/pars.geom.H);
 end

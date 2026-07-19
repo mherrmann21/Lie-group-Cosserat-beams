@@ -1,7 +1,7 @@
 [![MATLAB](https://img.shields.io/badge/language-MATLAB-blue.svg)](https://www.mathworks.com/products/matlab.html)
 ![MATLAB version](https://img.shields.io/badge/MATLAB-R2024b%2B-blue)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![DOI](https://img.shields.io/badge/DOI-10.1016%2Fj.cma.2024.117367-blue)](https://doi.org/10.1016/j.cma.2024.117367)
+[![Paper DOI](https://img.shields.io/badge/paper_DOI-10.1016%2Fj.cma.2024.117367-blue)](https://doi.org/10.1016/j.cma.2024.117367)
 
 # Lie-group Cosserat beams
 
@@ -54,11 +54,11 @@ model definitions used by the studies are collected in
 The project baseline is MATLAB R2024b or newer. Building and running every
 included workflow requires the following:
 
-- MATLAB Coder (Generating the MEX functions used by the simulations)
-- A [supported C++ compiler](https://www.mathworks.com/support/requirements/supported-compilers.html) (Compiling the generated MEX functions)
-- Optimization Toolbox (static equilibrium solver (`fsolve`))
-- Signal Processing Toolbox (Exponential-map helpers used by the static solver (`sinc`))
-- A toolbox providing `eul2rotm`, for example Robotics System Toolbox (rubber-rod initial configuration and out-of-plane-load scripts)
+- MATLAB Coder (to generate the MEX functions used by the simulations)
+- A [supported C++ compiler](https://www.mathworks.com/support/requirements/supported-compilers.html) (to compile the generated MEX functions)
+- Optimization Toolbox (for the static equilibrium solver, `fsolve`)
+- Signal Processing Toolbox (for the exponential-map helper `sinc` used by the static solver)
+- A toolbox providing `eul2rotm`, for example Robotics System Toolbox (for the rubber-rod initial configuration and out-of-plane-load scripts)
 
 
 The dynamic Cayley-map models themselves do not call Optimization Toolbox or
@@ -107,9 +107,13 @@ paths are managed by another mechanism.
 
 Two end-to-end examples are provided:
 
-- [`example_steel_string_rel_kin_lgvi.m`](scripts/example_steel_string_rel_kin_lgvi.m): Dynamic simulation of a steel-string using the relative-kinematic LGVI and a reduced inextensible Kirchhoff model
-- [`example_rubber_rod_abs_kin_ode.m`](scripts/example_rubber_rod_abs_kin_ode.m): Dynamic simulation of a rubber-rod using several beam models and integrators ( 
-  an absolute-kinematic LGVI and ODE (`ode15s`) models (both SR) and a relative-kinematic KH LGVI model)
+- [`example_steel_string.m`](scripts/example_steel_string.m): Dynamic
+  simulation of a steel string using the relative-kinematic LGVI and a
+  reduced inextensible Kirchhoff model.
+- [`example_rubber_rod.m`](scripts/example_rubber_rod.m): Dynamic simulation
+  of a rubber rod using a relative-kinematic Kirchhoff LGVI, an
+  absolute-kinematic Simo-Reissner LGVI, and an absolute-kinematic
+  Simo-Reissner model integrated with `ode15s`.
 
 Before running the examples, run `startup_cosserat_beams` and `buildMexFuns` (if not done previously).
 Plotting, animation, and saving are controlled by flags at the top of each
@@ -137,12 +141,12 @@ Before starting a study:
 1. Run `startup_cosserat_beams` to add all required folders to the MATLAB path.
 2. Run `buildMexFuns` to build the required MEX functions (if the functions have not already been built).
 3. Review the settings block at the top of the script.
-5. For the convergence study, run the generation script twice with
+4. For the convergence study, run the generation script twice with
    `CONV_STUDY_TYPE = "space"` and `CONV_STUDY_TYPE = "time"`.
-6. In the corresponding evaluation script, set `SIM_SUBFOLDER` to the
+5. In the corresponding evaluation script, set `SIM_SUBFOLDER` to the
    timestamped folder created by the generation script.
 
-By default, the study outputs are saved under `results/runs/`, and
+By default, study data are saved under `results/runs/`, and plots are
 generated under `results/plots/`. Both locations are excluded
 from version control. Full studies use fine spatial and temporal grids and can
 require substantial runtime, memory, and disk space.
@@ -157,17 +161,18 @@ The simulation interface is organized around MATLAB value classes:
 - `beamParams` stores all beam parameters: length, material and cross-section data, distributed inertia, stiffness, and damping.
 - `beamSimPars` stores the simulation parameters: reference and initial configurations, the time grid,
   gravity, external loads, and optional attached-body parameters.
-- `beamSimModel` defines the beam model (deformation modes) and integrator for hte simulation. It stores a model name, function handle, solver configuration,
+- `beamSimModel` defines the beam model (deformation modes) and integrator for the simulation. It stores a model name, function handle, solver configuration,
   and relative-model reduction matrices.
 
-    - The used integrator (absolute/relative kinematics, LGVI/ODE) is defined via the function handle stored in `funHandle`; see above for the available model functions
+    - The integrator (absolute/relative kinematics, LGVI/ODE) is selected by the function handle stored in `funHandle`; see above for the available model functions.
 
-    - The beam model (used deformation modes) is defined via the property `reducedParams`, in which the selection matrices `Ba` and `Bc` are stored
+    - The deformation modes are selected by the `Ba` and `Bc` matrices stored in `reducedParams`.
 - `beamSolverConfig` stores nonlinear-solver tolerances, iteration limits, and
   Jacobian update settings.
-- `beamSimRes` stores complete simulation results, i.e., both actual simulation data and meta data: it contains time-step metadata, aggregate metadata, energies, and a
+- `beamSimRes` stores complete simulation results, including time-step
+  metadata, aggregate metadata, energies, and a
   `beamSimData` object.
-- `beamSimData` stores the actual simulation results data: node rotations, positions, velocities, momenta,
+- `beamSimData` stores the numerical results: node rotations, positions, velocities, momenta,
   segment strains, and output times.
 
 See the class definitions in [`src/simulation/`](src/simulation) and the
@@ -186,9 +191,11 @@ This time step depends on the used beam model (included deformation modes, e.g.,
 
 - For slender beams, SR models usually require much smaller time steps than constrained models such as KH models.
 
-- In practice, this behavior causes the simulation to fail (implicit solver does not converge) if a time step is chosen that is too large.
-For simulations executed with the `beamSimulation` class, this results in `exitCode 0` displayed in the console.
-Successfull simulations display `exitCode = 1`.
+- In practice, a time step that is too large can prevent the implicit solver
+  from converging. For simulations executed with the `beamSimulation` class,
+  the console reports an `exitCode`: `0` means failure, `1` means that every
+  step satisfied the target tolerance, and `2` means that at least one step
+  reached the iteration limit but remained within `errorMarginLimit`.
 
 - If a simulation fails for given beam parameters and beam model, decrease the time step $h$ until the simulation runs.
 
@@ -279,5 +286,5 @@ This repository is available under the MIT License. See [`LICENSE`](LICENSE).
    pp. 352–367, 2020.
    [doi:10.1007/978-3-030-43089-4_23](https://doi.org/10.1007/978-3-030-43089-4_23)
 
-[5] J. Kim, *Lie Group Formulation of Articulated Rigid Body Dynamics*, 2012 
-   https://www.cs.cmu.edu/~junggon/tools/gear.html
+[5] J. Kim, *Lie Group Formulation of Articulated Rigid Body Dynamics*, 2012.
+   [Project page](https://www.cs.cmu.edu/~junggon/tools/gear.html)

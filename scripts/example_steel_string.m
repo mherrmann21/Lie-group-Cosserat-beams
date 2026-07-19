@@ -4,7 +4,7 @@
 %
 % Note that the steel string results in a fairly stiff model due to its
 % slenderness and material properties; hence, it is advantageous to
-% simulate it as a reduced Kirchhoff beam (without the stiff torsion and
+% simulate it as a reduced Kirchhoff beam (without the stiff shear and
 % extension modes), which results in much faster computation times.
 % Simulations with a Simo-Reissner beam would require much finer time
 % steps.
@@ -26,7 +26,7 @@ SAVE_RESULTS = false;
 SAVE_DATA = false;
 
 % Generate animation (and save, if SAVE_RESULTS is true)?
-ANIMATE_RESULTS = 1;
+ANIMATE_RESULTS = true;
 
 % Directory where the results subfolder will be created
 RESULTS_DIR = fullfile(getRootFolder, "results", "simulations");
@@ -99,7 +99,7 @@ beamSim.simModel.funHandle        = @(beamPars, simPars, simModel) ...
 % Solver settings
 beamSim.simModel.solverConfig.errorMargin = 1e-10;
 beamSim.simModel.solverConfig.maxIterations = 25;
-beamSim.simModel.solverConfig.UseExactJabocobian = true;
+beamSim.simModel.solverConfig.UseExactJacobian = true;
 beamSim.simModel.solverConfig.JacobianIterationThreshold = 5;
 
 % Set time step
@@ -198,7 +198,7 @@ if SAVE_RESULTS
     disp('Saving Individual Data...');
 
     % Remove the detailed simulation results data;
-    % only keeps "lightweight" overall simulation meta data
+    % only keeps lightweight aggregate simulation metadata
     if ~SAVE_DATA
         beamSim.clearSimData();
     end

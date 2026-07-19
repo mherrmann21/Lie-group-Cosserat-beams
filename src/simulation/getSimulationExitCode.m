@@ -49,7 +49,6 @@ function exitCode = getSimulationExitCode(simData, metaDataSteps, simPars, solve
         else
             % Should not be reached
             error('Error computing simulation exit code.');
-            exitCode = NaN;
         end
     end
 end

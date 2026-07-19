@@ -25,13 +25,11 @@ classdef beamSimulation
             arguments
                 obj
 
-                % if true, time is measured using an simulation run that is
-                % measured using the timeit() function, which results in
-                % much higher overall runtime (but is more accurate, of
-                % course)
+                % If true, integration time is measured with timeit. This
+                % requires additional simulation runs but is more accurate.
                 options.accurateTiming (1,1) logical = false;
 
-                % Whether or not to print simulation meta data to the
+                % Whether or not to print simulation metadata to the
                 % console
                 options.consoleOutput (1,1) logical = true;
             end
@@ -128,7 +126,7 @@ classdef beamSimulation
 
         function obj = clearSimData(obj)
             % Deletes all simulation results data except for the overall
-            % simulation meta data;
+            % simulation metadata;
             % this is done to be able to save the object without the large
             % simulation data
 

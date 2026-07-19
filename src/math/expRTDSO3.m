@@ -2,12 +2,12 @@ function T = expRTDSO3( om )
     %% Right-Trivialized Derivative of the Exponential map for SO(3)
     % Implements the right-trivialized derivative for the Exponential map
     % (also referred to as the right-trivialized tangent map) for SO(3):
-    % dexp : so(3) -> so(3) as the corresponding 6x6 linear matrix operator
+    % dexp : so(3) -> so(3) as the corresponding 3x3 linear matrix operator
     %
     % Source: [Mül21, p.5], eq. 2.13
     %
     % Input om:   so(3) element in *vector* form (omega)
-    % Output Lambda: Corresponding rotation matrix
+    % Output T: Right-trivialized derivative as a 3x3 matrix
     %
     % Maximilian Herrmann
     % Chair of Automatic Control

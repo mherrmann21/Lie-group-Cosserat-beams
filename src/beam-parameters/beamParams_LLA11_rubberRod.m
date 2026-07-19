@@ -33,7 +33,7 @@ function pars = beamParams_LLA11_rubberRod(options)
     % Cross-section radius, see [LLA11, p.301]
     radius = 5e-3;
 
-    % Cross-Section geometry
+    % Cross-section geometry
     % H/W corresponds to the diameter of the circular cross-section
     pars.geom.H = 2*radius;
     pars.geom.W = 2*radius;
@@ -59,7 +59,7 @@ function pars = beamParams_LLA11_rubberRod(options)
     % Default value set above in arguments block
     pars.mat.E = options.E;
 
-    % Poisson's number
+    % Poisson's ratio
     % Actually 0.5 in the paper! 0.49 to be able to compute CFL limit
     %pars.mat.nu = 0.49;
     pars.mat.nu = 0.5;
@@ -73,5 +73,5 @@ function pars = beamParams_LLA11_rubberRod(options)
 
     %% Display some key properties
 
-    fprintf('Beam slenderness ratio L/R: %d\n', pars.L/pars.geom.H);
+    fprintf('Beam length-to-height ratio L/H: %d\n', pars.L/pars.geom.H);
 end

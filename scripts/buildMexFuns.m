@@ -37,7 +37,6 @@ functionNames = [
     "beamMdlAbsKinLGVI_perNode"
     "beamMdlRelKinVarInt_Broyden"
     "beamMdlRelKinVarInt_Recursive"
-    "computeBeamEnergyEvolution"
     ... % Continuous-Time Model
     "beamMdlAbsKinCont_RHS"
     ... % Static Model

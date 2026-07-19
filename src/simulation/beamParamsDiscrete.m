@@ -10,7 +10,7 @@ classdef beamParamsDiscrete
 
     properties
 
-        nAllwd    (1,1)   double   % Nr. of allowd deformation modes
+        nAllwd    (1,1)   double   % Number of allowed deformation modes
         nSeg      (1,1)   double   % Nr. of Segments
         nNodes    (1,1)   double   % Nr. of Nodes (nNodes = nSeg + 1)
         l         (1,1)   double   % Segment Length

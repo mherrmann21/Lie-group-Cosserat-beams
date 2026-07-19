@@ -70,10 +70,8 @@ end
 function xi = computeDiscreteDeformations(g, l)
     % Compute the discrete relative "deformations" xi that
     % correspond to the given array of SE3 matrices.
-    %  Important: The computed xi values correspond to discrete *updates*,
-    %  not discrete *gradients*! I.e., tau(xi) = g_a^{-1}*g_{a+1} holds!
-    %  If the discrete "gradients" are required, the result must be divided
-    %  by l in the parent function.
+    % The returned values are deformation gradients; each relative update
+    % is divided by its segment length.
     arguments
         % Array of SE3 configuration matrices with dimension (4, 4, nNodes)
         g (4,4,:) double

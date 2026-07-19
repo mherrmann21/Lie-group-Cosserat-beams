@@ -18,8 +18,6 @@ function beamModels = defineSimStudyBeamModels(options)
     % AbsKin LGVI (Simo-Reissner)
     beamModels(1).modelName        = "AbsKin SR General";
     beamModels(1).solverConfig     = solverConfig;
-    beamModels(1).reducedParams.Ba; % Not needed
-    beamModels(1).reducedParams.Bc;
     beamModels(1).funHandle        = @(beamPars, simPars, simModel) ...
         beamMdlAbsKinLGVI_general_mex(simPars, beamPars, simModel.solverConfig, zeros(6,0), zeros(6,0));
 

@@ -7,7 +7,7 @@ function [X] = skew(x)
     % Important:
     % For se3, the convention for the vector in R6 is
     %    x = [ omega; v ],
-    % where omega is the angular and v the translationalcomponent.
+    % where omega is the angular component and v the translational component.
     %
     % Implementation by:
     % Maximilian Herrmann

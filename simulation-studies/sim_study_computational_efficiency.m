@@ -60,7 +60,7 @@ solverConfig = beamSolverConfig;
 solverConfig.errorMargin = 1e-11;
 solverConfig.maxIterations = 10;
 solverConfig.JacobianIterationThreshold = 5;
-solverConfig.UseExactJabocobian = true;
+solverConfig.UseExactJacobian = true;
 
 % External forces (at beam tip)
 fMax = [0.5 0 0 0 2 2 ]' * 0.5;  % Max. force
@@ -285,7 +285,7 @@ for iMat = 1:length(beamPars)
                     disp('Saving Individual Data...');
 
                     % Remove the detailed simulation results data;
-                    % only keeps "lightweight" overall simulation meta data
+                    % only keeps lightweight aggregate simulation metadata
                     if ~SAVE_DATA
                         beamSim.clearSimData();
                     end
@@ -331,7 +331,7 @@ for iMat = 1:length(beamPars)
     disp('Saving Individual Data (reference simulation)...');
 
     % Remove the detailed simulation results data;
-    % only keeps "lightweight" overall simulation meta data
+    % only keeps lightweight aggregate simulation metadata
     if ~SAVE_DATA
         beamSimRef.clearSimData();
     end

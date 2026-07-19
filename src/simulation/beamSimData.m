@@ -17,7 +17,7 @@ classdef beamSimData
         R    (3,3,:,:) double  % node rotation matrices                  (3, 3, nNodes, nSteps)
         x    (3,:,:)   double  % node position vectors                   (3, nNodes, nSteps)
         xi   (6,:,:)   double  % segment deformations                    (6, nSeg, nSteps)
-        xDot (3,:,:)   double  % node velocities in the inertial frame   (3, nNodes, nSteps))
+        xDot (3,:,:)   double  % node velocities in the inertial frame   (3, nNodes, nSteps)
         tout (:,1)     double  % time values                             (nSteps, 1)
     end
 end

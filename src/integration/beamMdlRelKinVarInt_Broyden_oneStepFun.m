@@ -10,7 +10,13 @@ function [R_k1, x_k1, eta_k, xi_k1, solData, H_k, g_xi_k1, JBeam_k1] = beamMdlRe
     % Inputs: See below.
     %
     % Outputs:
-    %   ToDo.
+    %   R_k1, x_k1  Node rotations and positions at the next time step
+    %   eta_k       Node velocities at the current time step
+    %   xi_k1       Segment deformations at the next time step
+    %   solData     Solver convergence metadata
+    %   H_k         Approximation of the inverse residual Jacobian
+    %   g_xi_k1     Relative segment transformations at the next time step
+    %   JBeam_k1    Geometric beam Jacobians at the next time step
     %
     % Maximilian Herrmann
     % Chair of Automatic Control
@@ -27,8 +33,8 @@ function [R_k1, x_k1, eta_k, xi_k1, solData, H_k, g_xi_k1, JBeam_k1] = beamMdlRe
         % Array of discrete velocities at previous time step k0 (6, nNodes)
         eta_k0  (6,:) double
 
-        % Array of allowed discrete segment deformations (nAllwd, nSeg)
-        % in the last time step
+        % Array of discrete segment deformations (6, nSeg) at the previous
+        % time step
         xi_k0  (6,:) double
 
         g_xi_k  (4,4,:) double
@@ -82,7 +88,7 @@ function [R_k1, x_k1, eta_k, xi_k1, solData, H_k, g_xi_k1, JBeam_k1] = beamMdlRe
     l = discPars.l;
 
 
-    %% Precompute the right-trivilialized derivative for xi_k (if required),
+    %% Precompute the right-trivialized derivative for xi_k (if required),
     % so that we don't have to do that in the solver loop;
     % Directly multiply with Ba.' to get the reduced matrix
     dTaoInvXi = zeros(nAllwd,6,nSeg);

@@ -23,7 +23,7 @@ function pars = beamParams_mbsd_soft_rod()
     % Cross-section radius
     radius = 7.5e-3;
 
-    % Cross-Section geometry
+    % Cross-section geometry
     % H/W corresponds to the diameter of the circular cross-section
     pars.geom.H = 2*radius;
     pars.geom.W = 2*radius;
@@ -40,7 +40,7 @@ function pars = beamParams_mbsd_soft_rod()
 
 
     %%% Beam Material
-    % Material: PVC like
+    % Material: PVC-like
 
     % Density (kg/m^3)
     pars.mat.rho = 1.5e3;
@@ -50,7 +50,7 @@ function pars = beamParams_mbsd_soft_rod()
     % Default value set above in arguments block
     pars.mat.E = 1.0E9;
 
-    % Poisson's number
+    % Poisson's ratio
     % https://en.wikipedia.org/wiki/Poisson%27s_ratio#Poisson's_ratio_values_for_different_materials
     % PVC: https://wiki.polymerservice-merseburg.de/index.php/Poissonzahl
     pars.mat.nu = 0.4;
@@ -63,5 +63,5 @@ function pars = beamParams_mbsd_soft_rod()
 
     %% Display some key properties
 
-    fprintf('Beam slenderness ratio L/R: %d\n', pars.L/pars.geom.H);
+    fprintf('Beam length-to-height ratio L/H: %d\n', pars.L/pars.geom.H);
 end

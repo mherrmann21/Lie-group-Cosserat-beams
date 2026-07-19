@@ -105,8 +105,8 @@ classdef beamSimRes
         end
 
         function obj = getSimMetaData(obj)
-            % Compute the meta data values for the entire simulation from
-            % the meta data of the individual steps and simulation results
+            % Compute metadata for the entire simulation from the metadata
+            % of the individual steps and simulation results
             % data
 
             obj.metaDataSim.ImplicitIterations.min  = min( obj.metaDataSteps.ImplicitIterations(:));

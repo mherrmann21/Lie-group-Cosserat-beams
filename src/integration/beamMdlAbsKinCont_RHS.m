@@ -147,12 +147,11 @@ end
 %% Local functions
 
 function [RDot, xDot] = beamAbsKinematicsRHS(R,eta)
-    % Compute the right-hand-side of the beam kinematics equation; i.e.,
+    % Compute the right-hand side of the beam kinematics equation; i.e.,
     % the kinematics equations for SO3 and R3
     %
     % Inputs:
-    %   R:  3D aray of node rotation matrices with dimension (3, 3, nNodes)
-    %   x:  2D array of node position vectors with dimension (3, nNodes)
+    %   R:  3D array of node rotation matrices with dimension (3, 3, nNodes)
     %  eta: 2D array of node velocities with dimension (6, nNodes)
     %
     % Output:

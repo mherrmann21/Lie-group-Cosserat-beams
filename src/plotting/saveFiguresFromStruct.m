@@ -4,9 +4,6 @@ function saveFiguresFromStruct(figHandles, saveDir, options)
     % The figure handles are given as fields of a struct (array).
     % The name of the file is the corresponding struct field name;
     % optionally, a prefix can be added before the struct field name.
-    %
-    % ToDo: Add options to the saved figures, if needed
-    %
     % Note: For plots with large amounts of data (lots of data points),
     % the generated files might be excessively large with default settings.
     % Hence, make sure that the default .mat file format in the MATLAB 

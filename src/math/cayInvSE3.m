@@ -1,6 +1,6 @@
 function xi = cayInvSE3( g )
     %% Inverse of the Cayley map for SE(3)
-    % Implements the inverse Cayley map for SE(3): cay : SE(3) -> se(3)
+    % Implements the inverse Cayley map for SE(3): cayInv : SE(3) -> se(3)
     %
     % Source: [Dem+14, p.10]
     % Follows convention for se3 elements in vector form: [omega; v]

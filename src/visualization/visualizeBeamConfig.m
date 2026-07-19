@@ -1,8 +1,6 @@
 function [figHandle, beamVisHandle] = visualizeBeamConfig(g, params, Name, options)
-    %% Visualize the configuration of a beam
-    %
-    % ToDo: Description, inputs etc.
-    %
+    %% Visualize a beam configuration and its deformation gradients
+    % Returns the figure and elastic-beam graphics handles.
     arguments
         % Array of SE3 node configuration matrices with dimension 
         % (4, 4, nNodes)

@@ -1,10 +1,10 @@
-%% Startup File: Add file paths and check important dependencies
+%% Add repository folders to the MATLAB path
 
-% Absolute file path of this function
-funPath = mfilename("fullpath");
+% Absolute path of this startup script
+scriptPath = mfilename("fullpath");
 
-% Get the directory of the function = repository root path
-rootPath = fileparts(funPath);
+% The startup script is located in the repository root
+rootPath = fileparts(scriptPath);
 
 % Add important paths
 addpath(genpath(fullfile(rootPath, "build")));
