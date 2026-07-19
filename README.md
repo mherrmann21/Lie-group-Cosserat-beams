@@ -26,7 +26,7 @@ Moreover, the repository implements the simulation studies in [1] and Chapter 3 
   models such as Kirchhoff (KH) beams.
 - Implicit solution of the relative-kinematic models with Broyden's good method or a linear-time
   solver based on recursive articulated-body
-  inertia algorithms.
+  inertia algorithms [4,5].
 - A continuous-time absolute-kinematic model for use with MATLAB ODE solvers.
 - Static and dynamic simulations that include gravity, body-fixed and spatial external forces (wrenches), time-dependent spatial loads, Kelvin-Voigt-type strain damping, quadratic air drag, and additional
   node-attached rigid-body inertias.
