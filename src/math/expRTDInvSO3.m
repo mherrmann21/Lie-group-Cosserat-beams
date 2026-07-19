@@ -1,13 +1,14 @@
-function T = expRTDSO3( om )
-    %% Right-Trivialized Derivative of the Exponential map for SO(3)
-    % Implements the right-trivialized derivative for the Exponential map
-    % (also referred to as the right-trivialized tangent map) for SO(3):
+function T = expRTDInvSO3( om )
+    %% Inverse Right-Trivialized Derivative of the Exponential map for SO(3)
+    % Implements the inverse of the right-trivialized derivative for the
+    % Exponential map (also referred to as the right-trivialized tangent 
+    % map) for SO(3):
     % dexp : so(3) -> so(3) as the corresponding 3x3 linear matrix operator
     %
-    % Source: [Mül21, p.5], eq. 2.13
+    % Source: [Mül21, p.5], eq. 2.16
     %
     % Input om:   so(3) element in *vector* form (omega)
-    % Output T: Right-trivialized derivative as a 3x3 matrix
+    % Output T: Inverse right-trivialized derivative as a 3x3 matrix
     %
     % Maximilian Herrmann
     % Chair of Automatic Control
@@ -24,21 +25,17 @@ function T = expRTDSO3( om )
     % Check if we have non-zero rotation
     if phi
 
-        % Rotation axis n
-        n = om / phi;
-
         % Compute auxiliary terms
         % Note: The arguments for sinc are divided by pi since we need the
         % *unnormalized* sinc function, but MATLAB sinc() is the normalized
         % version.
-        alpha = sinc(phi/pi);
-        beta  = sinc(phi/2/pi)^2;
+        gamma = cos(phi/2) / sinc(phi/2/pi);
 
         omH = skewSO3(om);
 
         T = eye(3) ...
-            + beta / 2 * omH ...
-            + (1 - alpha ) * skewSO3(n)^2;
+            - 1/2 * omH ...
+            + 1/(phi^2) * (1-gamma) * omH^2;
     else
         T = eye(3);
     end
