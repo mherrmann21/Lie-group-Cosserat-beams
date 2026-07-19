@@ -113,15 +113,15 @@ classdef beamSimulation
             end
             % First compute discrete deformations in case they aren't
             % present yet
-            obj.simRes.computeDeformations(obj.beamPars);
+            obj.simRes = obj.simRes.computeDeformations(obj.beamPars);
 
             % Then compute the actual energy evolution
-            obj.simRes.computeEnergyEvolution(obj.simPars.xiRef, obj.beamPars, obj.simPars);
+            obj.simRes = obj.simRes.computeEnergyEvolution(obj.simPars.xiRef, obj.beamPars, obj.simPars);
         end
 
         function obj = computeAllResultsData(obj)
             % Compute all missing simulation results quantities
-            obj.simRes.computeAllResultsData(obj.simPars.xiRef, obj.beamPars, obj.simPars);
+            obj.simRes = obj.simRes.computeAllResultsData(obj.simPars.xiRef, obj.beamPars, obj.simPars);
         end
 
         function obj = clearSimData(obj)
@@ -180,12 +180,12 @@ classdef beamSimulation
 
             % Interpolate results, if required
             if ~isnan(options.hPlot)
-                obj.simRes.interpolateSimResTime(options.hPlot);
+                obj.simRes = obj.simRes.interpolateSimResTime(options.hPlot);
             end
 
             % Compute energy, if required
             if options.computeEnergy
-                obj.simRes.computeEnergyEvolution(obj.simPars.xiRef, obj.beamPars, obj.simPars);
+                obj.simRes = obj.simRes.computeEnergyEvolution(obj.simPars.xiRef, obj.beamPars, obj.simPars);
             end
 
             % Plot results
