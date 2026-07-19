@@ -24,14 +24,13 @@ PLOT_SUBFOLDER = 'evaluations';
 
 PLOT_FOLDER = fullfile(getRootFolder, "results", "plots");
 
-
-%% Load results
-
 % Path to results folder
 RESULTS_DIR = fullfile(getRootFolder, "results", "runs");
 
 % Subfolder with data
 SIM_SUBFOLDER = '260718_1733_simResults_simTimes';
+
+%% Load results
 
 % Load simCase struct
 disp('Loading simulation results file...')
@@ -544,7 +543,7 @@ if SIMULATION_COMPARISON
 
             mdlRef = mdlFileRef.obj;
             mdlRef.simPars.tEnd = tEnd;
-            mdlRef.simulateModel();
+            mdlRef = mdlRef.simulateModel();
             mdlRef.plotSimResults("hPlot", 2^-10);
 
             if SAVE_MDLS
@@ -559,7 +558,7 @@ if SIMULATION_COMPARISON
                 );
             mdlAbs = mdlFileAbsSR.obj;
             mdlAbs.simPars.tEnd = tEnd;
-            mdlAbs.simulateModel("accurateTiming",true);
+            mdlAbs = mdlAbs.simulateModel("accurateTiming",true);
             mdlAbs.plotSimResults("hPlot", 2^-10);
 
             if SAVE_MDLS
@@ -574,7 +573,7 @@ if SIMULATION_COMPARISON
                 );
             mdlRelKH = mdlFileRelKH.obj;
             mdlRelKH.simPars.tEnd = tEnd;
-            mdlRelKH.simulateModel("accurateTiming",true);
+            mdlRelKH = mdlRelKH.simulateModel("accurateTiming",true);
             mdlRelKH.plotSimResults("hPlot", 2^-10);
             if SAVE_MDLS
                 mdlRelKH.saveObject(filePath_compModel_Rel);

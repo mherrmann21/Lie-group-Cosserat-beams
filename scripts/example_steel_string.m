@@ -45,14 +45,14 @@ beamPars = beamParams_LLA11_steelString;
 %beamPars = beamParams_mbsd_soft_rod;
 
 % Explicitly set damping, if desired
-% From LLA12
+% Values from [LLA11]:
 beamPars.d = [
     2e-4
     2e-4
     8e-6
     1e-1
     1e-1
-    2e-0
+    2e-0 % Different value
     ];
 
 
@@ -200,7 +200,7 @@ if SAVE_RESULTS
     % Remove the detailed simulation results data;
     % only keeps lightweight aggregate simulation metadata
     if ~SAVE_DATA
-        beamSim.clearSimData();
+        beamSim = beamSim.clearSimData();
     end
 
     % Save results

@@ -293,7 +293,7 @@ for iMat = 1:length(beamPars)
             beamSimRef(iSim).simModel = refBeamModels(iSim);
 
             % Simulate model
-            beamSimRef = beamSimRef(iSim).simulateModel;
+            beamSimRef(iSim) = beamSimRef(iSim).simulateModel;
 
             % Update success variable
             anyRefSimSuccessful = ...
@@ -523,7 +523,7 @@ for iMat = 1:length(beamPars)
                     % Remove the detailed simulation results data;
                     % only keeps lightweight aggregate simulation metadata
                     if ~SAVE_DATA
-                        beamSim.clearSimData();
+                        beamSim = beamSim.clearSimData();
                     end
 
                     % Save results
@@ -587,7 +587,7 @@ for iMat = 1:length(beamPars)
                 % Always clear simulation results data since it will be
                 % usually ver large
                 % ToDo: Alternatively, resample at lower space/time grid
-                beamSimRef(iRefSim).clearSimData();
+                beamSimRef(iRefSim) = beamSimRef(iRefSim).clearSimData();
                 beamSimRef(iRefSim).saveObject( ...
                     fullfile( ...
                     saveDirCase(iMat, ih, iSeg), ...
