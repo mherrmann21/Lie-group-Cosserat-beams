@@ -1,0 +1,49 @@
+build/**
+
+# results
+results/runs/**
+results/simulations/**
+results/plots/**
+
+# Preserve documentation and directory placeholders
+!results/runs/.gitkeep
+!results/plots/.gitkeep
+!results/simulations/.gitkeep
+!build/.gitkeep
+
+### MATLAB ignores
+
+# Autosave files
+*.asv
+*.m~
+*.autosave
+*.slx.r*
+*.mdl.r*
+*.bak
+
+# Derived content-obscured files
+*.p
+
+# Compiled MEX files
+*.mex*
+
+# Packaged app and toolbox files
+*.mlappinstall
+*.mltbx
+
+# Deployable archives
+*.ctf
+
+# Generated helpsearch folders
+helpsearch*/
+
+# Code generation folders
+slprj/
+sccprj/
+codegen/
+
+# Cache files
+*.slxc
+
+# Cloud based storage dotfile
+.MATLABDriveTag
