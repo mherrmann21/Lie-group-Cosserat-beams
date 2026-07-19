@@ -6,13 +6,6 @@
 % TUM School of Engineering and Design
 % Technical University of Munich
 
-% clear
-% close all
-% 
-% addpath('../')
-% addpath('../../')
-% addpath(pathdef_local)
-
 % Test tolerance
 tol = 1e-12;
 
