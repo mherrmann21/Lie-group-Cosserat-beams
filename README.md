@@ -58,6 +58,7 @@ included workflow requires the following:
 - A [supported C++ compiler](https://www.mathworks.com/support/requirements/supported-compilers.html) (to compile the generated MEX functions)
 - Optimization Toolbox (for the static equilibrium solver, `fsolve`)
 - Signal Processing Toolbox (for the exponential-map helper `sinc` used by the static solver)
+- Curve Fitting Toolbox (for convergence-rate estimation in the study evaluation scripts)
 - A toolbox providing `eul2rotm`, for example Robotics System Toolbox (for the rubber-rod initial configuration and out-of-plane-load scripts)
 
 
@@ -103,7 +104,7 @@ moving to another platform.
 The startup script must be run once per MATLAB session unless the repository
 paths are managed by another mechanism.
 
-## Examples and validation scripts
+## Example scripts
 
 Two end-to-end examples are provided:
 
@@ -119,12 +120,17 @@ Before running the examples, run `startup_cosserat_beams` and `buildMexFuns` (if
 Plotting, animation, and saving are controlled by flags at the top of each
 script.
 
-The files in [`tests/`](tests) are interactive validation scripts:
+### Test and validation scripts
+
+The files in [`tests/`](tests) are unit tests and interactive validation
+scripts:
 
 - `validation_all_beam_models` simulates the available dynamic formulations
   under common conditions for comparison.
 - `validation_step_force_function` visualizes all implemented temporal load
   scaling modes for comparison.
+- `runCayleyMapTests.m` and `runExponentialMapTests.m` run unit tests for
+  selected Lie-group functions under `src/math`.
 
 ## Running the simulation studies
 

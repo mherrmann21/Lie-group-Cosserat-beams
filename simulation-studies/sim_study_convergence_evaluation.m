@@ -27,12 +27,14 @@ PLOT_SUBFOLDER = 'evaluations';
 
 PLOT_FOLDER = fullfile(getRootFolder, "results", "plots");
 
-
-%% Load results
-
 % Path to results folder
 RESULTS_DIR = fullfile(getRootFolder, "results", "runs");
 
+% Simulation run to load (in RESULTS_DIR)
+SIM_SUBFOLDER = '240805_1329_simResults_convSpace';
+
+
+%% Load results
 
 % Load simCase struct
 disp('Loading simulation results file...')

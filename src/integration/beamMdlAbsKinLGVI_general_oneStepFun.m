@@ -5,7 +5,7 @@ function [R_k1, x_k1, eta_k, xi_k1, solData, H_k] = ...
         f_node_k_b, f_node_k_s, ...
         solverConfig)
     % LGVI function to integrate over one timestep (from k -> k1)
-    % Contains the integrator from Demourez 2015 with external forces and
+    % Contains the integrator from Demoures 2015 with external forces and
     % linear strain-rate dissipation;
     % the DEL-equs. are solved directly with Broyden's good method.
     %

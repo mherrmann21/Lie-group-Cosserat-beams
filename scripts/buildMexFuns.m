@@ -49,6 +49,7 @@ functionNames = [
     ];
 
 for iFun = 1:numel(functionNames)
+    fprintf("Compiling function ""%s""...\n", functionNames(iFun));
     codegen("-d", targetDir, "-o", ...
         fullfile(targetDir, functionNames(iFun) + "_mex"), ...
         "-config", cfg, functionNames(iFun));

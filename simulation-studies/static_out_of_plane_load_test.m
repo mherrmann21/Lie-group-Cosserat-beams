@@ -150,7 +150,7 @@ for iSeg = 1:length(nSegVec)
 
         %elasticBeamSimple(gEqu2, 'name', sprintf('Static Simulation, nSeg=%d', nSeg2), 'color', colors(2,:), 'axis', ax);
 
-        endPos(:,2,iSeg) = simData_gStat_SR.x(:,end);
+        endPos(:,2,iSeg) = simData_gStat_KH.x(:,end);
         disp('End position final configuration:')
         disp(simData_gStat_KH.x(:,end)');
     end
