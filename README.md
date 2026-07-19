@@ -54,11 +54,11 @@ model definitions used by the studies are collected in
 The project baseline is MATLAB R2024b or newer. Building and running every
 included workflow requires the following:
 
-- MATLAB Coder: Generating the MEX functions used by the simulations
-- A [supported C++ compiler](https://www.mathworks.com/support/requirements/supported-compilers.html): Compiling the generated MEX functions
-- Optimization Toolbox: The static equilibrium solver (`fsolve`)
-- Signal Processing Toolbox: Exponential-map helpers used by the static solver (`sinc`)
-- A toolbox providing `eul2rotm`, for example Robotics System Toolbox: The rubber-rod initial configuration and out-of-plane-load scripts
+- MATLAB Coder (Generating the MEX functions used by the simulations)
+- A [supported C++ compiler](https://www.mathworks.com/support/requirements/supported-compilers.html) (Compiling the generated MEX functions)
+- Optimization Toolbox (static equilibrium solver (`fsolve`))
+- Signal Processing Toolbox (Exponential-map helpers used by the static solver (`sinc`))
+- A toolbox providing `eul2rotm`, for example Robotics System Toolbox (rubber-rod initial configuration and out-of-plane-load scripts)
 
 
 The dynamic Cayley-map models themselves do not call Optimization Toolbox or
@@ -91,7 +91,7 @@ mex -setup C++
 % Generate all MEX functions in build/.
 buildMexFuns
 
-% Run a relative-kinematic Kirchhoff LGVI example.
+% Run the relative-kinematic Kirchhoff LGVI example.
 example_steel_string
 ```
 
@@ -107,11 +107,11 @@ paths are managed by another mechanism.
 
 Two end-to-end examples are provided:
 
-- [`example_steel_string_rel_kin_lgvi.m`](scripts/example_steel_string_rel_kin_lgvi.m): Dynamic simulation of a steel-string using several beam models and integrators
-- [`example_rubber_rod_abs_kin_ode.m`](scripts/example_rubber_rod_abs_kin_ode.m): Dynamic simulation of a rubber-rod using several beam models and integrators, including absolute-kinematic LGVI and ODE (`ode15s`) models (both SR) and a relative-kinematic KH LGVI model
+- [`example_steel_string_rel_kin_lgvi.m`](scripts/example_steel_string_rel_kin_lgvi.m): Dynamic simulation of a steel-string using the relative-kinematic LGVI and a reduced inextensible Kirchhoff model
+- [`example_rubber_rod_abs_kin_ode.m`](scripts/example_rubber_rod_abs_kin_ode.m): Dynamic simulation of a rubber-rod using several beam models and integrators ( 
+  an absolute-kinematic LGVI and ODE (`ode15s`) models (both SR) and a relative-kinematic KH LGVI model)
 
 Before running the examples, run `startup_cosserat_beams` and `buildMexFuns` (if not done previously).
-
 Plotting, animation, and saving are controlled by flags at the top of each
 script.
 
