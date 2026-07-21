@@ -2,6 +2,7 @@
 ![MATLAB version](https://img.shields.io/badge/MATLAB-R2024b%2B-blue)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Paper DOI](https://img.shields.io/badge/paper_DOI-10.1016%2Fj.cma.2024.117367-blue)](https://doi.org/10.1016/j.cma.2024.117367)
+![GitHub Repo stars](https://img.shields.io/github/stars/mherrmann21/Lie-group-Cosserat-beams?style=social)
 
 # Lie-group Cosserat beams
 
